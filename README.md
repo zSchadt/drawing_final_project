@@ -10,7 +10,7 @@ My goal is to create my own "sci-fi" realms. Each realm will have a portal
 back to the main page. I will most likely use three.js for 3D emphasis in my drawings.
 There will be one portal to an earth-like area as well as two abstract environments,
 created from a combination of three.js, blending, css, and javascript based animation.
-I hope to create surreal environments that appear to be alien to the viewer. To help  
+I hope to create surreal environments that appear to be alien to the viewer. To help 
 accomplish this I will use ambient audio corresponding to each area. Each "portal"
 (exit link from current page) will be some sort of abstract 3D shape or grouping of
 shapes that react to the user via actions like moving the mouse, or hovering over
