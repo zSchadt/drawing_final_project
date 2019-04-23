@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background-image: url("winter.jpg");
+  background-size: cover;
+}
+
+#snow {
+  height: 100vh;
+  width: 100%;
+  background-image: url("snow.gif");
+  background-size: cover;
+  mix-blend-mode: difference;
+}
+
+#helper {
+  margin: auto;
+  border: 1px solid white;
+  color: white;
+  visibility: hidden;
+  font-size: 3em;
+}
