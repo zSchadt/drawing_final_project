@@ -87,7 +87,7 @@ function animateTwo(renderer, scene, camera, meshes) {
 }
 
 // after loading ...
-function main() {
+function mainTwo() {
 
   initTwo();
 
@@ -96,4 +96,4 @@ function main() {
 }
 
 // after loading page all page resources start exectution
-window.addEventListener("load", main);
+window.addEventListener("load", mainTwo);

@@ -74,7 +74,7 @@ function init() {
   renderer.render(scene, camera);
 }
 
-// animate the spheres
+// animate the toruses, rotate them each a different way (alternating)
 function animate() {
   requestAnimationFrame(animate);
 
@@ -86,9 +86,9 @@ function animate() {
     if(mesh.position.x > 600 || mesh.position.x < -600) {
       meshes[i].direction = Math.random() > .5 ? 1 : -1;
       mesh.position.x = meshes[i].direction==1 ? -350 : 350;
+      mesh.position.z += 1;
     }
 
-    mesh.rotation.y += meshes[i].rotation;
   }
 
   renderer.render(scene, camera);
