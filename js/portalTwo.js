@@ -1,22 +1,26 @@
-// Final Project Prototype
-let camera, scene, renderer, controls;
+/* Zachary Schadt (zts214)
+Assignment 7: WebGL */
 
-let meshes = [];
-
-function randomInInterval(min, max) {
-    return Math.random() * (max - min) + min;
+function randomInInterval(min, max, asInteger=false) {
+  if(!asInteger) {
+      return Math.random() * (max - min) + min;
+  }else { // whole number
+      return Math.floor(Math.random() * (max - min) + min);
+  }
 }
 
-function init() {
-  const box = document.getElementById("box");
+function initTwo() {
+  const box = document.querySelectorAll(".portal")[1];
+
+  const meshes = [];
 
   // create a scene:
-  scene = new THREE.Scene();
+  const scene = new THREE.Scene();
   let width = box.clientWidth;
   let height = box.clientHeight;
 
   // create a camera
-  camera = new THREE.PerspectiveCamera(45, width/height, 1, 1000);
+  const camera = new THREE.PerspectiveCamera(45, width/height, 1, 1000);
   camera.position.z = 500;
   scene.add(camera);
 
@@ -26,7 +30,7 @@ function init() {
 
   // create backdrop
   const planeMat = new THREE.MeshLambertMaterial({color:0x000000});
-  const planeGeo = new THREE.PlaneGeometry(900, 900, 20, 20);
+  const planeGeo = new THREE.PlaneGeometry(1000,1000, 20, 20);
   const plane = new THREE.Mesh(planeGeo, planeMat);
   plane.position.set(0,0,-500);
   scene.add(plane);
@@ -50,41 +54,46 @@ function init() {
   }
 
   // create a renderer and add it to the dom
-  renderer = new THREE.WebGLRenderer({alpha:1, antialias: true});
+  const renderer = new THREE.WebGLRenderer({alpha:1, antialias: true});
   renderer.setSize(width, height);
 
   box.appendChild(renderer.domElement);
 
   renderer.render(scene, camera);
+
+  animateTwo(renderer, scene, camera, meshes)
 }
 
 multiplier = false;
 // animate the spheres
-function animate() {
-  requestAnimationFrame(animate);
+function animateTwo(renderer, scene, camera, meshes) {
+  requestAnimationFrame(animateTwo.bind(null, renderer, scene, camera, meshes));
+
+  for(let i = 0; i < meshes.length; i++) {
+    const mesh = meshes[i].mesh;
+      //mesh.rotation.x += 0.01;
+    if(!multiplier) {
+      mesh.position.z += meshes[i].speed;
+    } else {
+      mesh.position.z += ( meshes[i].speed * 5 );
+    }
+
+    if(mesh.position.z > 500) {
+      mesh.position.z = -501;
+    }
+  }
 
   renderer.render(scene, camera);
 }
 
-function changeColor(box) {
-  const curr = box.style.borderColor;
-  if(curr == "rgb(224, 0, 74)") {
-    box.style.borderColor = "rgb(19, 28, 127)"
-  } else {
-    box.style.borderColor = "rgb(224, 0, 74)"
-  }
-}
-
+// after loading ...
 function main() {
-  init();
-  animate();
 
-  const box = document.getElementById("box");
-  setInterval(changeColor.bind(null,box),2000);
+  initTwo();
 
-  // speed up particles on click
-  document.body.addEventListener("mousedown", (e) => {multiplier=(!multiplier)});
+
+  return 0;
 }
 
-// wait for page load
+// after loading page all page resources start exectution
 window.addEventListener("load", main);

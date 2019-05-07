@@ -7,8 +7,8 @@ function setupOne() {
 
   // create a scene:
   const scene = new THREE.Scene();
-  let width = portal.offsetWidth;
-  let height = portal.offsetHeight;
+  let width = portal.clientWidth;
+  let height = portal.clientHeight;
 
   // create a camera
   const camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 10000);
@@ -48,8 +48,8 @@ function setupTwo() {
 
   // create a scene:
   const scene = new THREE.Scene();
-  let width = portal.offsetWidth;
-  let height = portal.offsetHeight;
+  let width = portal.clientWidth;
+  let height = portal.clientHeight;
 
   // create a camera
   const camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 10000);
@@ -91,7 +91,7 @@ function main() {
 
   setupTwo();
 
-  
+
   return 0;
 }
 
