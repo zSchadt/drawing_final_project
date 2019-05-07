@@ -74,7 +74,7 @@ function init() {
   renderer.render(scene, camera);
 }
 
-// animate the toruses, rotate them each a different way (alternating)
+// animate the planets
 function animate() {
   requestAnimationFrame(animate);
 
@@ -82,6 +82,7 @@ function animate() {
     const mesh = meshes[i].mesh;
 
     mesh.position.x += ( meshes[i].speed * meshes[i].direction );
+    mesh.rotation.y += .01;
 
     if(mesh.position.x > 600 || mesh.position.x < -600) {
       meshes[i].direction = Math.random() > .5 ? 1 : -1;
