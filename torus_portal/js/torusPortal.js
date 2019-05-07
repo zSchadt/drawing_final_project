@@ -89,17 +89,6 @@ function init() {
   meshes.push(torus);
   scene.add(torus);
 
-  //6
-  torusGeometry = new THREE.TorusGeometry(100, 15, 15, 100);
-  //let material = new THREE.MeshStandardMaterial({map: loader.load("media/asteroid.jpg")});
-  material = new THREE.MeshStandardMaterial({color: 0xffffff, wireframe: true});
-  torus = new THREE.Mesh(torusGeometry, material);
-  torus.position.set(0,0,-1800);
-  // cast shadow
-  torus.castShadow = true;
-  meshes.push(torus);
-  scene.add(torus);
-
   // create a renderer and add it to the dom
   renderer = new THREE.WebGLRenderer({alpha:1, antialias: true});
   renderer.setSize(width, height);
@@ -123,7 +112,10 @@ function animate() {
       mesh.rotation.z -= .005;
     }
     if(zoom) {
-      mesh.position.z += .5;
+      mesh.position.z += 2;
+      if(mesh.position.z > 550) {
+        mesh.position.z = -1600;
+      }
     }
   }
 
@@ -144,7 +136,7 @@ function main() {
   animate();
 
   const box = document.getElementById("box");
-  setInterval(changeColor.bind(null,box),2000);
+  //setInterval(changeColor.bind(null,box),2000);
   setTimeout(()=>{zoom=true}, 2000);
 }
 

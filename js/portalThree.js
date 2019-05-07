@@ -4,6 +4,7 @@ Assignment 7: WebGL */
 
 function initThree() {
   let portal = document.querySelectorAll(".portal")[2];
+  let meshes = [];
 
   // create a scene:
   const scene = new THREE.Scene();
@@ -40,6 +41,7 @@ function initThree() {
   torus.position.set(0,0,390);
   // cast shadow
   torus.castShadow = true;
+  meshes.push(torus);
   scene.add(torus);
 
   //2
@@ -50,6 +52,7 @@ function initThree() {
   torus.position.set(0,0,290);
   // cast shadow
   torus.castShadow = true;
+  meshes.push(torus);
   scene.add(torus);
 
   //3
@@ -60,6 +63,7 @@ function initThree() {
   torus.position.set(0,0,130);
   // cast shadow
   torus.castShadow = true;
+  meshes.push(torus);
   scene.add(torus);
 
   //4
@@ -70,6 +74,7 @@ function initThree() {
   torus.position.set(0,0,-200);
   // cast shadow
   torus.castShadow = true;
+  meshes.push(torus);
   scene.add(torus);
 
   //5
@@ -80,6 +85,7 @@ function initThree() {
   torus.position.set(0,0,-1000);
   // cast shadow
   torus.castShadow = true;
+  meshes.push(torus);
   scene.add(torus);
 
   // create a renderer and add it to the dom
@@ -90,10 +96,20 @@ function initThree() {
 
   renderer.render(scene, camera);
 
-  animateThree(renderer, scene, camera);
+  animateThree(renderer, scene, camera, meshes);
 }
-function animateThree(renderer, scene, camera) {
-  requestAnimationFrame(animateThree.bind(null, renderer, scene, camera));
+function animateThree(renderer, scene, camera, meshes) {
+  requestAnimationFrame(animateThree.bind(null, renderer, scene, camera, meshes));
+
+  for(let i = 0; i < meshes.length; i++) {
+    const mesh = meshes[i];
+
+    if(i % 2 == 0) {
+      mesh.rotation.z += .005;
+    } else {
+      mesh.rotation.z -= .005;
+    }
+  }
 
   renderer.render(scene, camera);
 }
